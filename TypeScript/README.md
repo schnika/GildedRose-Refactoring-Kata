@@ -55,3 +55,18 @@ There are instructions in the [TextTest Readme](../texttests/README.md) for sett
     interpreter:python
 
 
+
+## TODO
+
+* fix test "quality should not be more than 50"
+* lets discuss if we need a product categroy for backstaage passes, because right now the backstage passes requirements only apply to `Backstage passes to a TAFKAL80ETC concert`
+* check edge cases for max quality
+* research if vscode has some kind of automatic refactoring options, such as swapping if else condition bodies, etc. 
+
+## Next session
+
+* Refactor, then implement new feature
+* Since we can't change the item class, we consider 
+composing it together into our own class (imagine item class
+is DTO from external provider)
+* HOMEWORK: by Friday -> come up with a refactoring concept / draft 
