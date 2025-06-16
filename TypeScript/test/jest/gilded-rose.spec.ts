@@ -72,33 +72,87 @@ describe("Gilded Rose", () => {
 
   describe("Backstage passes to a TAFKAL80ETC concert", () => {
     it("quality should increase by 1 when there are more than 10 days left", () => {
-      const gildedRose = new GildedRose([new Item("Backstage passes to a TAFKAL80ETC concert", 11, 30)]);
+      const gildedRose = new GildedRose([
+        new Item("Backstage passes to a TAFKAL80ETC concert", 11, 30),
+      ]);
       const items = gildedRose.updateQuality();
       expect(items[0].quality).toBe(31);
-    })
+    });
 
     it("quality should increase by 2 when there between 10 and 6 days left", () => {
-      const gildedRose = new GildedRose([new Item("Backstage passes to a TAFKAL80ETC concert", 10, 30)]);
+      const gildedRose = new GildedRose([
+        new Item("Backstage passes to a TAFKAL80ETC concert", 10, 30),
+      ]);
       const items = gildedRose.updateQuality();
       expect(items[0].quality).toBe(32);
     });
 
     it("quality should increase by 3 when there are less than 6 days left", () => {
-      const gildedRose = new GildedRose([new Item("Backstage passes to a TAFKAL80ETC concert", 5, 30)]);
+      const gildedRose = new GildedRose([
+        new Item("Backstage passes to a TAFKAL80ETC concert", 5, 30),
+      ]);
       const items = gildedRose.updateQuality();
       expect(items[0].quality).toBe(33);
     });
 
     it("quality should set the quality to 0 when the sellIn date has passed", () => {
-      const gildedRose = new GildedRose([new Item("Backstage passes to a TAFKAL80ETC concert", 0, 30)]);
+      const gildedRose = new GildedRose([
+        new Item("Backstage passes to a TAFKAL80ETC concert", 0, 30),
+      ]);
       const items = gildedRose.updateQuality();
       expect(items[0].quality).toBe(0);
     });
 
     it("quality should not increase to more than 50", () => {
-      const gildedRose = new GildedRose([new Item("Backstage passes to a TAFKAL80ETC concert", 11, 50)]);
+      const gildedRose = new GildedRose([
+        new Item("Backstage passes to a TAFKAL80ETC concert", 11, 50),
+      ]);
       const items = gildedRose.updateQuality();
       expect(items[0].quality).toBe(50);
     });
-  })
+  });
+});
+
+describe("increaseQuality", () => {
+  const QUALITY = 10;
+
+  it("increases quality by 1", () => {
+    const item = new Item("test", 0, QUALITY);
+     const gildedRose = new GildedRose([item]);
+    gildedRose.increaseQuality(item);
+    expect(item.quality).toBe(11);
+  });
+});
+
+describe("decreaseQuality", () => {
+  const QUALITY = 10;
+
+  it("decreases quality by 1", () => {
+    const item = new Item("test", 0, QUALITY);
+    const gildedRose = new GildedRose([item]);
+    gildedRose.decreaseQuality(item);
+    expect(item.quality).toBe(9);
+  });
+});
+
+describe("setQuality", () => {
+  const QUALITY = 10;
+
+  it("sets quality by 1", () => {
+    const item = new Item("test", 0, QUALITY);
+    const gildedRose = new GildedRose([item]);
+    gildedRose.setQuality(item, 0);
+    expect(item.quality).toBe(0);
+  });
+});
+
+describe("decreaseSellIn", () => {
+  const SELL_IN = 5;
+
+  it("decreases sellIn by 1", () => {
+    const item = new Item("test", SELL_IN, 0);
+    const gildedRose = new GildedRose([item]);
+    gildedRose.decreaseSellIn(item);
+    expect(item.sellIn).toBe(4);
+  });
 });

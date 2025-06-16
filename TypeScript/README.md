@@ -70,3 +70,11 @@ There are instructions in the [TextTest Readme](../texttests/README.md) for sett
 composing it together into our own class (imagine item class
 is DTO from external provider)
 * HOMEWORK: by Friday -> come up with a refactoring concept / draft 
+
+## Ideas
+
+* Introduce functionality for item methods (increaseQuality, etc.)
+* Remove nesting of ifs into ands 
+* Flatten the condition branch
+* extract items into their own domain models based on their name. 
+    e.g. how does quality change for cheese vs other. 
